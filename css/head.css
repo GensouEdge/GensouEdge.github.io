@@ -13,7 +13,15 @@ body {
 /* 链接样式 */
 a {
     text-decoration: none;
-    color: inherit;
+}
+
+/* 鼠标移动到链接上时才显示链接下面的横线 */
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
 }
 
 /* 头部标题 */
