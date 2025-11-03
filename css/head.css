@@ -1,10 +1,11 @@
 /* 使用根部节点托管颜色，随便改 */
 :root {
-    --brand-colour: #494949;
+    --brand-colour: #333;
+    --brand-active: #008CBA;
     --accent-colour: #dadada;
     --text-colour: #333;
     --muted-text: #666;
-    --bg-colour: #f8f9fa;
+    --bg-colour: #f1f1f1;
     --card-bg: #fff;
     --border-colour: #e0e0e0;
 }
@@ -24,7 +25,7 @@ body {
 
 h1, h2, h3 {
     font-family: "Lora", "Noto Serif SC", serif;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.3px;
   }
 
@@ -33,12 +34,12 @@ a {
     text-decoration: none;
 }
 
-/* 鼠标移动到链接上时才显示链接下面的横线 */
-a:hover {
+/* 仅卡片内生效 鼠标移动到链接上时才显示链接下面的横线 */
+.card a:hover {
     text-decoration: underline;
 }
 
-a:active {
+.card a:active {
     text-decoration: underline;
 }
 
@@ -71,7 +72,7 @@ a:active {
     transition: background 0.3s;
 }
 
-/* 链接颜色修改 */
+/* 鼠标悬停导航栏颜色修改 */
 .topnav a:hover {
     background-color: var(--accent-colour);
     color: black;
@@ -81,9 +82,9 @@ a:active {
     margin-left: auto;
 }
 
-/* 链接选中 */
+/* 导航栏链接选中 */
 a.active {
-    background-color: var(--brand-colour);
+    background-color: var(--brand-active);
     color: white;
 }
 
@@ -121,7 +122,7 @@ a.active {
     gap: 10px;
 }
 .card p {
-    color: var(--muted-text);
+    color: var(--text-colour);
 }
 .card:hover {
     transform: translateY(-1px);
