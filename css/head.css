@@ -1,3 +1,14 @@
+/* 使用根部节点托管颜色，随便改 */
+:root {
+    --brand-colour: #494949;
+    --accent-colour: #dadada;
+    --text-colour: #333;
+    --muted-text: #666;
+    --bg-colour: #f8f9fa;
+    --card-bg: #fff;
+    --border-colour: #e0e0e0;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,9 +17,16 @@
 
 body {
     font-family: "Noto Sans SC", sans-serif;
-    background: #f1f1f1;
+    color: var(--text-colour);
+    background: var(--bg-colour);
     padding: 10px;
 }
+
+h1, h2, h3 {
+    font-family: "Lora", "Noto Serif SC", serif;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
 
 /* 链接样式 */
 a {
@@ -40,7 +58,8 @@ a:active {
 .topnav {
     display: flex;
     flex-wrap: wrap;
-    background-color: #333;
+    background-color: var(--brand-colour);
+    color: white;
 }
 
 /* 导航条链接 */
@@ -48,13 +67,13 @@ a:active {
     flex: 1 1 auto;
     text-align: center;
     padding: 14px 16px;
-    color: #f2f2f2;
+    color: var(--border-colour);
     transition: background 0.3s;
 }
 
 /* 链接颜色修改 */
 .topnav a:hover {
-    background-color: #ddd;
+    background-color: var(--accent-colour);
     color: black;
 }
 
@@ -64,7 +83,7 @@ a:active {
 
 /* 链接选中 */
 a.active {
-    background-color: #008CBA;
+    background-color: var(--brand-colour);
     color: white;
 }
 
@@ -100,6 +119,14 @@ a.active {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     gap: 10px;
+}
+.card p {
+    color: var(--muted-text);
+}
+.card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
 }
 
 /* 三等分卡片 */
@@ -139,7 +166,7 @@ a.active {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background: #ddd;
+    background: var(--border-colour);
     margin-top: 20px;
 }
 
@@ -229,7 +256,7 @@ a.active {
 }
 
 .banner-dots span.active {
-    background: #008CBA;
+    background: var(--accent-colour);
 }
 
 /* 响应式：平板及以下（max-width: 900px） */
@@ -276,4 +303,33 @@ a.active {
         width: 10px;
         height: 10px;
     }
+}
+
+/* 这里我定义了一个 Hero Banner，想用可以用 */
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 60vh;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("img/") center/cover no-repeat;
+}
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: .5em;
+}
+
+.btn-primary {
+    background: var(--accent-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: var(--brand-color);
 }

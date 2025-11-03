@@ -6,6 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = document.querySelector(".banner-btn.prev");
     const nextBtn = document.querySelector(".banner-btn.next");
 
+    const cards = document.querySelectorAll(".card")
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                observer.unobserve(e.target);
+            }
+        });
+    });
+    cards.forEach(c => observer.observe(c));
+
     let current = 0;
     let timer;
     const total = slides.length;
