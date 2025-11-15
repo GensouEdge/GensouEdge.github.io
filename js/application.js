@@ -29,9 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const html = await response.text();
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-            // 使用 outerHTML 保留 .row 外壳，这样样式（例如布局间距、列样式）能在被插入时生效
-            const rowElem = doc.querySelector('.row');
-            const content = rowElem?.outerHTML;
+            // 收集页面中所有的 .row 元素并保留它们的 outerHTML，
+            // 这样可以在页面中显示多个 row（例如第二个及后续的 row）
+            const rowElems = doc.querySelectorAll('.row');
+            let content = '';
+            if (rowElems.length > 0) {
+                content = Array.from(rowElems).map(el => el.outerHTML).join('');
+            } else {
+                // 回退：如果没有找到 .row，则使用 body 的 innerHTML（可兼容不同页面结构）
+                content = doc.body.innerHTML || '';
+            }
             if (!content) throw new Error('Invalid page structure');
             pageCache[page] = content;
             document.getElementById('content-container').innerHTML = content;
