@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function stripText(html) {
         const tmp = document.createElement('div');
         tmp.innerHTML = html;
+        // 从索引中排除显式标记为不被索引的节点：
+        // - 带有 `data-noindex` 属性或类名 `noindex`
+        try {
+            tmp.querySelectorAll('[data-noindex], .noindex').forEach(n => n.remove());
+        } catch (e) {
+            // 容错：若发生异常则继续使用未修改的 tmp
+        }
         return (tmp.textContent || '').replace(/\s+/g, ' ').trim();
     }
 
@@ -24,6 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
         .map(a => ({ key: a.getAttribute('data-page'), name: a.textContent && a.textContent.trim() }))
         .filter(x => x.key)
         .reduce((m, x) => { m[x.key] = x.name; return m; }, {});
+
+    // 页面关键词映射：当搜索框输入这些关键词时直接跳转到对应页面（页面位于 `pages/<page>.html`）
+    // 请把关键词以小写形式添加为 key，值为页面的 data-page key（不带扩展名）
+    const hiddenPageKeywords = {
+        'secret': 'join',
+        '秘密': 'join',
+    };
 
     let activePage = 'home';
 
@@ -103,6 +117,19 @@ document.addEventListener('DOMContentLoaded', () => {
     async function performSearch(query) {
         const q = (query || '').trim().toLowerCase();
         if (!q) return;
+        // 支持关键词跳转到隐藏页面：优先精确匹配，若无则尝试匹配第一个 token
+        const firstToken = q.split(/\s+/)[0];
+        const targetPage = hiddenPageKeywords[q] || hiddenPageKeywords[firstToken];
+        if (targetPage) {
+            if (targetPage === 'home') {
+                history.pushState(null, '', window.location.pathname + window.location.search);
+                loadPage('home');
+            } else {
+                // 使用 hash 导航以保持应用路由的一致性
+                window.location.hash = targetPage;
+            }
+            return;
+        }
         await ensureAllPagesCached();
         const results = [];
         for (const [page, data] of Object.entries(pageCache)) {
