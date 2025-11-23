@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navLinks = document.querySelectorAll('#nav a');
 
+    // 从导航链接中自动读取页面 key -> 显示名（中文）映射
+    const pageNames = Array.from(document.querySelectorAll('#nav a'))
+        .map(a => ({ key: a.getAttribute('data-page'), name: a.textContent && a.textContent.trim() }))
+        .filter(x => x.key)
+        .reduce((m, x) => { m[x.key] = x.name; return m; }, {});
+
     let activePage = 'home';
 
     function updateActivePage(page) {
@@ -66,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `<div class="error-card"><h2>页面加载失败</h2><p>请稍后重试</p></div>`;
         }
     }
-    
+
     // 确保所有导航页面都已缓存（并预先抓取用于搜索）
     async function ensureAllPagesCached() {
         const uncached = pagesList.filter(p => !pageCache[p]);
@@ -127,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'card';
             const title = document.createElement('h2');
-            title.textContent = r.page === 'home' ? '首页' : r.page;
+            title.textContent = pageNames[r.page] || r.page;
             const p = document.createElement('p');
             p.innerHTML = r.snippet;
             const btn = document.createElement('a');
