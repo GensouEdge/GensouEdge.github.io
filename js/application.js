@@ -121,13 +121,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstToken = q.split(/\s+/)[0];
         const targetPage = hiddenPageKeywords[q] || hiddenPageKeywords[firstToken];
         if (targetPage) {
-            if (targetPage === 'home') {
-                history.pushState(null, '', window.location.pathname + window.location.search);
-                loadPage('home');
-            } else {
-                // 使用 hash 导航以保持应用路由的一致性
-                window.location.hash = targetPage;
-            }
+            // 显示提示后短暂延迟再跳转，以便用户看到反馈
+            showNotice('已识别隐藏关键词，正在跳转…');
+            const delay = 100; // ms
+            setTimeout(() => {
+                if (targetPage === 'home') {
+                    history.pushState(null, '', window.location.pathname + window.location.search);
+                    loadPage('home');
+                } else {
+                    // 使用 hash 导航以保持应用路由的一致性
+                    window.location.hash = targetPage;
+                }
+            }, delay);
             return;
         }
         await ensureAllPagesCached();
@@ -182,6 +187,66 @@ document.addEventListener('DOMContentLoaded', () => {
             wrapper.appendChild(card);
         });
         container.appendChild(wrapper);
+    }
+
+    // 在文档中显示一个短暂的提示（toast），用于提示用户识别到隐藏关键词
+    function showNotice(message, duration = 1000) {
+        try {
+            const existing = document.getElementById('hidden-keyword-notice');
+            if (existing) existing.remove();
+            const notice = document.createElement('div');
+            notice.id = 'hidden-keyword-notice';
+            notice.textContent = message;
+            // 在移动端（小屏幕）显示为底部居中、加大字号，桌面端保持右上小提示
+            const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width:600px)').matches;
+            if (isMobile) {
+                Object.assign(notice.style, {
+                    position: 'fixed',
+                    left: '50%',
+                    bottom: '20px',
+                    transform: 'translateX(-50%)',
+                    background: 'rgba(34,34,34,0.97)',
+                    color: '#fff',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    zIndex: 2147483647,
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.35)',
+                    opacity: '0',
+                    transition: 'opacity 180ms ease-in-out, transform 180ms ease-in-out',
+                    fontSize: '16px',
+                    maxWidth: 'calc(100% - 32px)',
+                    textAlign: 'center',
+                    touchAction: 'manipulation'
+                });
+                // 移动端适当延长默认可见时长
+                duration = Math.max(duration, 1200);
+            } else {
+                Object.assign(notice.style, {
+                    position: 'fixed',
+                    right: '16px',
+                    top: '16px',
+                    background: 'rgba(34,34,34,0.95)',
+                    color: '#fff',
+                    padding: '10px 14px',
+                    borderRadius: '6px',
+                    zIndex: 9999,
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                    opacity: '0',
+                    transition: 'opacity 150ms ease-in-out',
+                    fontSize: '14px'
+                });
+            }
+            document.body.appendChild(notice);
+            // 触发过渡
+            requestAnimationFrame(() => { notice.style.opacity = '1'; if (isMobile) notice.style.transform = 'translateX(-50%) translateY(0)'; });
+            setTimeout(() => {
+                notice.style.opacity = '0';
+                if (isMobile) notice.style.transform = 'translateX(-50%) translateY(6px)';
+                setTimeout(() => { if (notice.parentNode) notice.parentNode.removeChild(notice); }, 220);
+            }, duration);
+        } catch (e) {
+            // 容错：若 DOM 操作失败则忽略
+        }
     }
 
     // 搜索表单事件绑定
