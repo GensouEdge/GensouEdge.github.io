@@ -32,8 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter(x => x.key)
         .reduce((m, x) => { m[x.key] = x.name; return m; }, {});
 
-    // 页面关键词映射：当搜索框输入这些关键词时直接跳转到对应页面（页面位于 `pages/<page>.html`）
-    // 请把关键词以小写形式添加为 key，值为页面的 data-page key（不带扩展名）
+    // 页面关键词映射：当搜索框输入这些关键词时直接跳转到对应页面或链接
+    // - 如果 value 是页面 key（例如 'project'），将导航到 `pages/<key>.html`（使用应用内 hash 导航）
+    // - 如果 value 是外部 URL（以 'http://' 或 'https://' 或 '//' 开头），将打开该外部链接（默认在新标签）
+    // 请把关键词以小写形式添加为 key，值为页面 key 或外部 URL（不带扩展名）
     const hiddenPageKeywords = {
         'secret': 'join',
         '秘密': 'join',
@@ -124,8 +126,18 @@ document.addEventListener('DOMContentLoaded', () => {
             // 显示提示后短暂延迟再跳转，以便用户看到反馈
             showNotice('已识别隐藏关键词，正在跳转…');
             const delay = 100; // ms
+            // 如果 mapping 值看起来像外部 URL，则在新标签打开；否则按原有内部页面导航处理
+            const isExternal = /^(https?:)?\/\//i.test(targetPage);
             setTimeout(() => {
-                if (targetPage === 'home') {
+                if (isExternal) {
+                    try {
+                        const newWin = window.open(targetPage, '_blank');
+                        if (newWin) newWin.opener = null;
+                        else window.location.href = targetPage; // popup 被阻止时在当前页打开作为回退
+                    } catch (e) {
+                        window.location.href = targetPage;
+                    }
+                } else if (targetPage === 'home') {
                     history.pushState(null, '', window.location.pathname + window.location.search);
                     loadPage('home');
                 } else {
