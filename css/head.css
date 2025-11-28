@@ -181,6 +181,10 @@ a.active {
     opacity: 1;
     transform: translateY(0);
 }
+/* 图片左右间距 */
+.card.link img {
+    margin: 0 15px;
+}
 
 /* 三等分卡片 */
 .third-width-card {
