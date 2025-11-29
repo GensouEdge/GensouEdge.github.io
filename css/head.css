@@ -183,7 +183,7 @@ a.active {
 }
 /* 图片左右间距 */
 .card.link img {
-    margin: 0 15px;
+    margin: 0 8px;
 }
 
 /* 三等分卡片 */
