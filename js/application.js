@@ -32,13 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter(x => x.key)
         .reduce((m, x) => { m[x.key] = x.name; return m; }, {});
 
-    // 页面关键词映射：当搜索框输入这些关键词时直接跳转到对应页面或链接
+    // 页面关键词映射：当搜索框输入这些关键词时直接跳转到对应页面或文件/链接
     // - 如果 value 是页面 key（例如 'project'），将导航到 `pages/<key>.html`（使用应用内 hash 导航）
     // - 如果 value 是外部 URL（以 'http://' 或 'https://' 或 '//' 开头），将打开该外部链接（默认在新标签）
-    // 请把关键词以小写形式添加为 key，值为页面 key 或外部 URL（不带扩展名）
+    // - 如果 value 是站内文件路径（如 '/some.html' 或 'img/pic.png' 或 'pages/other.html'），将导航到该文件路径（在当前页打开）
+    // 请把关键词以小写形式添加为 key，值为页面 key、外部 URL，或站内文件路径
     const hiddenPageKeywords = {
         'secret': 'join',
         '秘密': 'join',
+        '冴月麟': '03'
     };
 
     let activePage = 'home';
@@ -126,8 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // 显示提示后短暂延迟再跳转，以便用户看到反馈
             showNotice('已识别隐藏关键词，正在跳转…');
             const delay = 100; // ms
-            // 如果 mapping 值看起来像外部 URL，则在新标签打开；否则按原有内部页面导航处理
+            // 如果 mapping 值看起来像外部 URL，则在新标签打开；若看起来像文件路径则在当前页导航到该路径；否则按内部页面 key 处理
             const isExternal = /^(https?:)?\/\//i.test(targetPage);
+            const looksLikeFile = /(^\/)|\/|\.[a-z0-9]{2,6}$/i.test(targetPage);
             setTimeout(() => {
                 if (isExternal) {
                     try {
@@ -135,6 +138,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (newWin) newWin.opener = null;
                         else window.location.href = targetPage; // popup 被阻止时在当前页打开作为回退
                     } catch (e) {
+                        window.location.href = targetPage;
+                    }
+                } else if (looksLikeFile) {
+                    // 将相对或绝对文件路径解析为完整 URL，并在当前页导航
+                    try {
+                        const url = new URL(targetPage, window.location.href).href;
+                        window.location.href = url;
+                    } catch (e) {
+                        // 解析失败则尝试直接赋值
                         window.location.href = targetPage;
                     }
                 } else if (targetPage === 'home') {
