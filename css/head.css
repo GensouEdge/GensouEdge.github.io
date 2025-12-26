@@ -8,6 +8,21 @@
     --bg-colour: #f1f1f1;
     --card-bg: #fff;
     --border-colour: #e0e0e0;
+    --white: #fff;
+    --black: #000;
+    --gray-light: #aaa;
+    --gray-medium: #666;
+    --cyan: #00d4ff;
+    --dark-shadow: rgba(11,11,11,0.06);
+    --placeholder-color: rgba(255,255,255,0.75);
+    --banner-btn-bg: rgba(0, 0, 0, 0.4);
+    --banner-btn-hover: rgba(0, 0, 0, 0.6);
+    --banner-dot: rgba(255, 255, 255, 0.6);
+    --hero-overlay: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+    --text-shadow-dark: rgba(0,0,0,0.8);
+    --text-shadow-medium: rgba(0,0,0,0.6);
+    --text-shadow-light: rgba(0,0,0,0.4);
+    --text-shadow-extra-light: rgba(0,0,0,0.2);
 }
 
 
@@ -48,7 +63,7 @@ a {
 .header {
     padding: 30px;
     text-align: center;
-    background: white;
+    background: var(--card-bg);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -76,7 +91,7 @@ a {
 /* 鼠标悬停导航栏颜色修改 */
 .topnav a:hover {
     background-color: var(--accent-colour);
-    color: black;
+    color: var(--black);
 }
 
 .topnav a:last-child {
@@ -94,25 +109,25 @@ a {
     padding: 8px 12px;
     border-radius: 20px;
     /* 未聚焦时有明显边框和微弱背景，以便在导航条上可辨识 */
-    border: 3px solid #fff; /* 边框 */
-    background: rgba(255,45,149,0.06);
+    border: 3px solid var(--white); /* 边框 */
+    background: var(--brand-colour);
     font-weight: 700;
     min-width: 180px;
-    color: #ffffff; /* 未聚焦时文字为白色 */
+    color: var(--white); /* 未聚焦时文字为白色 */
 }
 .search-input::placeholder {
-    color: rgba(255,255,255,0.75);
+    color: var(--placeholder-color);
 }
 .search-input:focus {
     outline: none;
-    box-shadow: 0 6px 0 rgba(11,11,11,0.06);
-    background: #ffffff; /* 焦点时显示白色背景，增强可见性 */
-    color: #0b0b0b; /* 聚焦时文字改为深色，保证可读性 */
-    border-color: #00d4ff; /* 聚焦时边框改为青色，突出焦点 */
+    box-shadow: 0 6px 0 var(--dark-shadow);
+    background: var(--white); /* 焦点时显示白色背景，增强可见性 */
+    color: var(--black); /* 聚焦时文字改为深色，保证可读性 */
+    border-color: var(--cyan); /* 聚焦时边框改为青色，突出焦点 */
 }
 .search-btn {
     background: var(--brand-colour);
-    color: white;
+    color: var(--white);
     border: none;
     padding: 8px 12px;
     border-radius: 20px;
@@ -134,7 +149,7 @@ a {
 /* 导航栏链接选中 */
 a.active {
     background-color: var(--brand-active);
-    color: white;
+    color: var(--white);
 }
 
 /* 内容行容器 */
@@ -163,7 +178,7 @@ a.active {
 .card {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--card-bg);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -191,7 +206,7 @@ a.active {
     flex: 1 1 30%;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--card-bg);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -204,7 +219,7 @@ a.active {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    background-color: #aaa;
+    background-color: var(--gray-light);
     padding: 10px;
     border-radius: 4px;
 }
@@ -280,8 +295,8 @@ a.active {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
+    background: var(--banner-btn-bg);
+    color: var(--white);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -289,7 +304,7 @@ a.active {
 }
 
 .banner-btn:hover {
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--banner-btn-hover);
 }
 
 .banner-dots {
@@ -307,7 +322,7 @@ a.active {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--banner-dot);
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -381,26 +396,26 @@ a.active {
         height: 44px; /* 统一高度，符合触控目标 */
         padding: 8px 12px;
         /* 保持与 PC 端一致的配色，右侧去掉边框以与按钮无缝衔接 */
-        border: 3px solid #fff;
+        border: 3px solid var(--white);
         border-right: 0;
         border-radius: 20px 0 0 20px;
-        background: rgba(255,45,149,0.06);
-        color: #ffffff;
+        background: var(--brand-colour);
+        color: var(--white);
         font-weight: 700;
         display: flex;
         align-items: center;
     }
 
     .search-input::placeholder {
-        color: rgba(255,255,255,0.75);
+        color: var(--placeholder-color);
     }
 
     .search-input:focus {
         outline: none;
-        box-shadow: 0 6px 0 rgba(11,11,11,0.06);
-        background: #ffffff;
-        color: #0b0b0b;
-        border-color: #00d4ff;
+        box-shadow: 0 6px 0 var(--dark-shadow);
+        background: var(--white);
+        color: var(--black);
+        border-color: var(--cyan);
         border-right: 0;
     }
 
@@ -410,8 +425,8 @@ a.active {
         height: 44px; /* 与输入框对齐 */
         padding: 0 14px; /* 竖向由 height 控制，左右保留内边距 */
         border-radius: 0 20px 20px 0;
-        background: #666;
-        color: #fff;
+        background: var(--gray-medium);
+        color: var(--white);
         font-weight: 700;
         cursor: pointer;
         border: none;
@@ -430,7 +445,7 @@ a.active {
     justify-content: center;
     text-align: center;
     height: 60vh;
-    color: white;
+    color: var(--white);
     overflow: hidden;
 
     background-position: center;
@@ -442,7 +457,7 @@ a.active {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+    background: var(--hero-overlay);
     z-index: 1;
 }
 
@@ -455,10 +470,10 @@ a.active {
     font-size: 3em;
     margin-bottom: .5em;
     text-shadow:
-    0 0 10px rgba(0,0,0,0.8),
-    0 0 20px rgba(0,0,0,0.6),
-    0 0 40px rgba(0,0,0,0.4),
-    0 0 80px rgba(0,0,0,0.2);
+    0 0 10px var(--text-shadow-dark),
+    0 0 20px var(--text-shadow-medium),
+    0 0 40px var(--text-shadow-light),
+    0 0 80px var(--text-shadow-extra-light);
 }
 
 .heroimg {
@@ -477,7 +492,7 @@ a.active {
 
 .btn-primary {
     background: var(--accent-colour);
-    color: white;
+    color: var(--white);
     padding: 12px 24px;
     border-radius: 6px;
     text-decoration: none;
