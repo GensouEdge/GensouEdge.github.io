@@ -25,6 +25,142 @@
     --text-shadow-extra-light: rgba(0,0,0,0.2);
 }
 
+/* 波普艺术主题 */
+[data-theme="pop"] {
+    --brand-colour: #ff2d95;
+    --brand-active: #00d4ff;
+    --accent-colour: #ffd400;
+    --text-colour: #0b0b0b;
+    --muted-text: #333333;
+    --bg-colour: #fffce8;
+    --card-bg: #ffffff;
+    --border-colour: #0b0b0b;
+    --white: #ffffff;
+    --black: #0b0b0b;
+    --gray-light: #cccccc;
+    --gray-medium: #666666;
+    --cyan: #00d4ff;
+    --dark-shadow: rgba(11,11,11,0.12);
+    --placeholder-color: rgba(0,0,0,0.7);
+    --banner-btn-bg: rgba(255,45,149,0.6);
+    --banner-btn-hover: rgba(0,212,255,0.6);
+    --banner-dot: rgba(255,212,0,0.6);
+    --hero-overlay: linear-gradient(rgba(255,45,149,0.5), rgba(0,212,255,0.5));
+    --text-shadow-dark: rgba(11,11,11,1);
+    --text-shadow-medium: rgba(11,11,11,0.8);
+    --text-shadow-light: rgba(11,11,11,0.6);
+    --text-shadow-extra-light: rgba(11,11,11,0.4);
+}
+
+/* 波普风格额外样式 */
+[data-theme="pop"] .card {
+    border: 6px solid var(--accent-colour);
+    box-shadow: 0 18px 0 rgba(11, 11, 11, 0.08);
+}
+[data-theme="pop"] .card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 0 28px 0 rgba(11, 11, 11, 0.10);
+    transition: transform 0.18s cubic-bezier(.2, .9, .2, 1);
+}
+
+[data-theme="pop"] .header {
+    background: linear-gradient(90deg, var(--brand-active), var(--brand-colour));
+    color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(11, 11, 11, 0.12);
+    position: relative;
+    overflow: visible;
+}
+[data-theme="pop"] .header h1 {
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 6px;
+    text-shadow: -2px -2px 0 var(--black), 2px 2px 0 var(--black), -2px 2px 0 var(--black), 2px -2px 0 var(--black);
+}
+[data-theme="pop"] .header h3 {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+[data-theme="pop"] .topnav {
+    gap: 6px;
+    margin: 14px 0;
+}
+[data-theme="pop"] .topnav a {
+    padding: 10px 16px;
+    color: var(--black);
+    background: var(--accent-colour);
+    border-radius: 6px;
+    font-weight: 700;
+    box-shadow: 0 8px 0 rgba(0, 0, 0, 0.12);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+[data-theme="pop"] .topnav a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 0 rgba(0, 0, 0, 0.12);
+}
+[data-theme="pop"] .topnav a.active {
+    background: linear-gradient(90deg, var(--brand-colour), var(--brand-active));
+    color: var(--white);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 0 rgba(0, 0, 0, 0.16);
+}
+
+[data-theme="pop"] h1, [data-theme="pop"] h2, [data-theme="pop"] h3 {
+    font-family: "Luckiest Guy", "Lora", serif;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+[data-theme="pop"] .btn-primary {
+    border: 2px solid var(--black);
+    box-shadow: 3px 3px 0 var(--brand-colour);
+}
+
+[data-theme="pop"] .theme-toggle-btn {
+    background: var(--accent-colour);
+    color: var(--black);
+    border: 2px solid var(--black);
+    padding: 8px 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+[data-theme="pop"] .theme-toggle-btn:hover {
+    background: var(--brand-colour);
+    color: var(--white);
+    box-shadow: 2px 2px 0 var(--black);
+}
+
+[data-theme="pop"] body {
+    font-family: "Roboto", "Noto Sans SC", sans-serif;
+    background: var(--bg-colour);
+    padding: 12px;
+}
+
+[data-theme="pop"] .fakeimg {
+    background: repeating-radial-gradient(circle at 10% 10%, #ffd400 0, #ffd400 4px, transparent 4px, transparent 8px);
+    border-radius: 6px;
+}
+
+[data-theme="pop"] .banner-container {
+    border-radius: 12px;
+    box-shadow: 0 18px 0 rgba(11, 11, 11, 0.08);
+}
+
+[data-theme="pop"] .third-width-card {
+    background-color: var(--card-bg);
+    border: 6px dashed var(--brand-active);
+}
+
+[data-theme="pop"] .footer {
+    background: linear-gradient(90deg, var(--accent-colour), #fff8e6);
+    border-top: 6px solid var(--brand-colour);
+}
+
 
 * {
     box-sizing: border-box;
@@ -96,6 +232,23 @@ a {
 
 .topnav a:last-child {
     margin-left: auto;
+}
+
+/* 主题切换按钮 */
+.theme-toggle-btn {
+    background: var(--accent-colour);
+    color: var(--black);
+    border: 2px solid var(--border-colour);
+    padding: 8px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: 10px;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--brand-colour);
+    color: var(--white);
 }
 
 /* 搜索样式 */
@@ -230,6 +383,10 @@ a.active {
     height: auto;
     border-radius: 4px;
     object-fit: cover;
+}
+
+.noindex {
+    color: var(--bg-colour);
 }
 
 /* 底部 */

@@ -1,5 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // 主题切换功能
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'pop') {
+            document.documentElement.removeAttribute('data-theme');
+            themeToggleBtn.textContent = '波普风格';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'pop');
+            themeToggleBtn.textContent = '默认风格';
+        }
+    });
+
     const homeContent = document.getElementById('content-container').innerHTML;
 
     window.stripText = function(html) {
