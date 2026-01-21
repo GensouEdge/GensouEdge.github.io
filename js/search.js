@@ -107,7 +107,15 @@ function renderSearchResults(results) {
         const card = document.createElement('div');
         card.className = 'card';
         const title = document.createElement('h2');
-        title.textContent = window.pageNames[r.page] || r.page;
+        let titleText = window.pageNames[r.page];
+        if (!titleText) {
+            try {
+                titleText = decodeURIComponent(r.page);
+            } catch (e) {
+                titleText = r.page;
+            }
+        }
+        title.textContent = titleText;
         const p = document.createElement('p');
         p.innerHTML = r.snippet;
         const btn = document.createElement('a');

@@ -43,7 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.pageNames = Array.from(document.querySelectorAll('#nav a'))
         .map(a => ({ key: a.getAttribute('data-page'), name: a.textContent && a.textContent.trim() }))
         .filter(x => x.key)
-        .reduce((m, x) => { m[x.key] = x.name; return m; }, {});
+        .reduce((m, x) => {
+            m[x.key] = x.name;
+            try {
+                const decoded = decodeURIComponent(x.key);
+                if (decoded && decoded !== x.key) m[decoded] = x.name;
+            } catch (e) {
+                // 忽略格式错误的百分比编码
+            }
+            return m;
+        }, {});
 
     window.activePage = 'home';
 
