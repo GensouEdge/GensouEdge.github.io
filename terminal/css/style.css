@@ -1,0 +1,35 @@
+/* futuristic terminal style */
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #0f0;
+    font-family: "Lucida Console", Monaco, monospace;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#terminal {
+    width: 80%;
+    max-width: 800px;
+}
+#output {
+    white-space: pre-wrap;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+#input-line {
+    display: flex;
+}
+.prompt {
+    user-select: none;
+}
+#command-input {
+    background: transparent;
+    border: none;
+    color: #0f0;
+    outline: none;
+    flex: 1;
+    font-size: 1em;
+}
