@@ -6,7 +6,8 @@
 const hiddenPageKeywords = {
     'secret': 'join',
     '秘密': 'join',
-    '冴月麟': '03'
+    '冴月麟': '03',
+    '终端': 'terminal/index.html',
 };
 
 // 确保所有导航页面都已缓存（并预先抓取用于搜索）
