@@ -142,6 +142,10 @@
     border: 6px dashed var(--brand-active);
 }
 
+[data-theme="pop"] .five-width-card {
+    border: 6px dashed var(--brand-active);
+}
+
 [data-theme="pop"] .footer {
     background: linear-gradient(90deg, var(--accent-colour), #fff8e6);
     border-top: 6px solid var(--brand-colour);
@@ -353,6 +357,19 @@ a.active {
 /* 三等分卡片 */
 .third-width-card {
     flex: 1 1 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+}
+
+/* 五等分卡片，仅用于产品页面 */
+.five-width-card {
+    flex: 1 1 18%;
+    max-width: 20%;
     display: flex;
     flex-direction: column;
     background-color: var(--card-bg);
