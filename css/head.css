@@ -369,7 +369,6 @@ a.active {
 /* 五等分卡片，仅用于产品页面 */
 .five-width-card {
     flex: 1 1 18%;
-    max-width: 20%;
     display: flex;
     flex-direction: column;
     background-color: var(--card-bg);
