@@ -676,8 +676,10 @@ a.active {
     background: var(--brand-colour);
 }
 
-
+/* 制品卡片 */
 a.product-card {
+    flex: 0 0 calc((100% - 40px) / 5); /* 固定五等份 */
+    border-radius: 8px;
     text-decoration: none;
     padding: 0;
     overflow: hidden;
