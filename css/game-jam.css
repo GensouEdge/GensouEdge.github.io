@@ -1,0 +1,336 @@
+.jam-page {
+    --jam-ink: #26313b;
+    --jam-paper: #f6f3ea;
+    --jam-cyan: #7fa5a0;
+    --jam-pink: #b8736d;
+    --jam-yellow: #c5aa6a;
+    max-width: 1180px;
+    margin: 20px auto 0;
+    color: var(--jam-ink);
+    font-family: "Noto Sans SC", system-ui, sans-serif;
+}
+
+.jam-page * {
+    box-sizing: border-box;
+}
+
+.jam-page h1,
+.jam-page h2,
+.jam-page p {
+    margin: 0;
+}
+
+.jam-page h2 {
+    font-family: "Lora", "Noto Serif SC", serif;
+    text-transform: none;
+}
+
+.jam-hero {
+    min-height: 620px;
+    position: relative;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(30px, 7vw, 84px);
+    border: 4px solid var(--jam-ink);
+    border-radius: 20px;
+    background: var(--jam-ink);
+    color: #fff;
+    isolation: isolate;
+}
+
+.jam-hero-art {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jam-hero-copy {
+    max-width: 680px;
+}
+
+.jam-kicker,
+.jam-section-no {
+    font-size: .82rem;
+    font-weight: 900;
+    letter-spacing: .18em;
+}
+
+.jam-kicker {
+    margin-bottom: 20px !important;
+    color: var(--jam-yellow);
+}
+
+.jam-hero h1 {
+    font-size: clamp(3.5rem, 9vw, 7.8rem);
+    line-height: .86;
+    letter-spacing: -.055em;
+}
+
+.jam-hero h1 span {
+    color: var(--jam-cyan);
+}
+
+.jam-lead {
+    max-width: 520px;
+    margin-top: 28px !important;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    line-height: 1.7;
+}
+
+.jam-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 34px;
+}
+
+.jam-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 24px;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    color: #fff;
+    font-weight: 800;
+    transition: transform .18s ease, background .18s ease;
+}
+
+.jam-button:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.jam-button-primary {
+    border-color: var(--jam-pink);
+    background: var(--jam-pink);
+}
+
+.jam-button-ghost:hover {
+    background: #fff;
+    color: var(--jam-ink);
+}
+
+.jam-status {
+    position: absolute;
+    right: 22px;
+    bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: var(--jam-yellow);
+    color: var(--jam-ink);
+    font-size: .83rem;
+}
+
+.jam-status strong {
+    font-size: 1rem;
+}
+
+.jam-intro {
+    display: grid;
+    grid-template-columns: minmax(260px, .8fr) 1.2fr;
+    gap: clamp(30px, 7vw, 90px);
+    padding: clamp(56px, 9vw, 110px) clamp(12px, 4vw, 40px);
+}
+
+.jam-intro h2,
+.jam-rules h2,
+.jam-join h2 {
+    margin-top: 12px;
+    font-size: clamp(2rem, 4.8vw, 4.2rem);
+    line-height: 1.12;
+}
+
+.jam-intro>p {
+    align-self: end;
+    font-size: 1.08rem;
+    line-height: 1.9;
+}
+
+.jam-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.jam-feature {
+    min-height: 410px;
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    border: 4px solid var(--jam-ink);
+    border-radius: 18px;
+}
+
+.jam-feature img {
+    width: 104px;
+    height: 104px;
+    margin-left: auto;
+}
+
+.jam-feature .jam-section-no {
+    margin-top: auto;
+}
+
+.jam-feature h2 {
+    margin-top: 12px;
+    font-size: 2rem;
+}
+
+.jam-feature>p:last-child {
+    margin-top: 12px;
+    line-height: 1.65;
+}
+
+.jam-feature-cyan {
+    background: var(--jam-cyan);
+}
+
+.jam-feature-yellow {
+    background: var(--jam-yellow);
+}
+
+.jam-feature-pink {
+    background: var(--jam-pink);
+}
+
+.jam-big-number {
+    margin-left: auto;
+    font: 900 clamp(5rem, 10vw, 8rem)/.8 "Lora", serif;
+}
+
+.jam-rules {
+    display: grid;
+    grid-template-columns: .75fr 1.25fr;
+    gap: clamp(30px, 7vw, 90px);
+    padding: clamp(70px, 10vw, 120px) clamp(12px, 4vw, 40px);
+}
+
+.jam-rule-list {
+    list-style: none;
+    counter-reset: none;
+}
+
+.jam-rule-list li {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 18px;
+    padding: 22px 0;
+    border-top: 2px solid var(--jam-ink);
+}
+
+.jam-rule-list li:last-child {
+    border-bottom: 2px solid var(--jam-ink);
+}
+
+.jam-rule-list span {
+    font-weight: 900;
+    color: var(--jam-pink);
+}
+
+.jam-rule-list p {
+    line-height: 1.65;
+}
+
+.jam-rule-list strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.12rem;
+}
+
+.jam-join {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 30px;
+    align-items: end;
+    padding: clamp(44px, 8vw, 82px);
+    border: 4px solid var(--jam-ink);
+    border-radius: 20px;
+    background: var(--jam-cyan);
+}
+
+.jam-join>div>p:last-child {
+    margin-top: 18px;
+    font-size: 1.08rem;
+    line-height: 1.7;
+}
+
+.jam-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 24px;
+    border: 3px solid var(--jam-ink);
+    border-radius: 14px;
+    background: var(--jam-paper);
+}
+
+.jam-contact span {
+    font-size: .85rem;
+    font-weight: 800;
+}
+
+.jam-contact strong {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: .03em;
+}
+
+.jam-contact a {
+    color: var(--jam-ink);
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+[data-theme="pop"] .jam-page .jam-feature,
+[data-theme="pop"] .jam-page .jam-hero,
+[data-theme="pop"] .jam-page .jam-join {
+    box-shadow: 10px 10px 0 var(--jam-ink);
+}
+
+@media (max-width: 760px) {
+    .jam-hero {
+        min-height: 600px;
+        align-items: start;
+        padding-top: 64px;
+    }
+
+    .jam-status {
+        left: 18px;
+        right: 18px;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-radius: 14px;
+    }
+
+    .jam-intro,
+    .jam-rules,
+    .jam-join {
+        grid-template-columns: 1fr;
+    }
+
+    .jam-feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .jam-feature {
+        min-height: 330px;
+    }
+
+    .jam-join {
+        padding: 34px 22px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jam-button {
+        transition: none;
+    }
+}
